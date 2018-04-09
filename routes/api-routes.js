@@ -50,5 +50,14 @@ module.exports = function (app) {
             console.log(dbArticle);
             res.send("Saved");
         })
-    })
+    });
+
+    app.get("/api/saved", function(req, res) {
+        db.Article.find({saved: true}).then(function(dbSaved){
+            console.log(dbSaved);
+            res.json(dbSaved);
+        }).catch(function(err) {
+            res.json(err);
+        });
+    });
 }

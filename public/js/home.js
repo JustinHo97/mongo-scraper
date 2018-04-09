@@ -8,7 +8,7 @@ $(function () {
     });
 
     $(document).on("click", ".save", function() {
-        var id = $(this).attr("id");
+        var id = $(this).attr("data-id");
         $.ajax({
             url:"/api/save/"+id,
             type: "PUT",
@@ -26,7 +26,7 @@ $(function () {
                     `<div class="panel panel-default">
                     <div class="panel-heading">
                       <h3 class="panel-title"><a href="${data[i].link}">${data[i].title}</a></h3>
-                      <a class="btn btn-info save" id="${data[i]._id}">Save Article</a>
+                      <a class="btn btn-info save" data-id="${data[i]._id}">Save Article</a>
                     </div>
                     <div class="panel-body">
                       ${data[i].summary}
