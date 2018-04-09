@@ -20,6 +20,7 @@ $(function () {
     loadArticle();
 
     function loadArticle() {
+        $(".articles").empty();        
         $.get("/api/article", function(data) {
             for (var i = 0; i < data.length; i++) {
                 var $panel = $(

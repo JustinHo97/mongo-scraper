@@ -72,5 +72,12 @@ module.exports = function (app) {
         }).catch(function (err) {
             res.json(err);
         });
-    })
+    });
+
+    app.put("/remove/save/:id",function (req, res) {
+        db.Article.findOneAndUpdate({ _id: req.params.id }, { saved: false }, { new: true }).then(function (dbArticle) {
+            console.log(dbArticle);
+            res.send("Removed");
+        });
+    });
 }

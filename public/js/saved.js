@@ -2,6 +2,7 @@ $(function () {
     loadSaved();
     function loadSaved() {
         $.get("/api/saved", function (data) {
+            $(".articles").empty();
             for (var i = 0; i < data.length; i++) {
                 console.log(data);
                 var $content;
@@ -59,5 +60,14 @@ $(function () {
         }).then(function(){
             loadSaved();
         })
-    })
+    });
+    $(document).on("click", ".remove", function () {
+        $.ajax({
+            url: "/remove/save/"+$(this).attr("data-id"),
+            type:"PUT"
+        }).then(function(data){
+            console.log(data);
+            loadSaved();
+        });
+    });
 });
